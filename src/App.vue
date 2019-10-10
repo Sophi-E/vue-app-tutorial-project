@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import uuid from 'uuid';
 import EmployeeForm from "./components/EmployeeForm.vue";
 import EmployeeTable from "./components/EmployeeTable.vue";
 
@@ -21,17 +22,17 @@ export default {
     return {
       employees: [
         {
-          id: 1,
+          id: uuid(),
           name: "Richard Hendricks",
           email: "richard@piedpiper.com"
         },
         {
-          id: 2,
+          id: uuid(),
           name: "Bertram Gilfoyle",
           email: "gilfoyle@piedpiper.com"
         },
         {
-          id: 3,
+          id: uuid(),
           name: "Dinesh Chugtai",
           email: "dinesh@piedpiper.com"
         }
@@ -41,13 +42,9 @@ export default {
 
   methods: {
     addEmployee(employee) {
-      const LastId =
-        this.employees.length > 0
-          ? this.employees[this.employees.length - 1].id
-          : 0;
-      const Id = LastId + 1;
-      const NewEmployee = { ...employee, Id };
-      this.employees = [...this.employees, NewEmployee];
+      const id = uuid()
+      const NewEmployee = { ...employee, id };
+      this.employees = [...this.employees, NewEmployee]; 
     },
     deleteEmployee(id) {
       this.employees = this.employees.filter(employee => {
