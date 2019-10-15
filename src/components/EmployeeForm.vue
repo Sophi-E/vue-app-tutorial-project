@@ -1,9 +1,9 @@
 <template>
   <div id='employee-form'>
-    <form @submit.prevent = handleSubmit>
-      <label for="name">Employee name</label>
+    <form @submit.prevent='handleSubmit'>
+      <label>Employee name</label>
       <input v-model='employee.name' type="text">
-      <label for="email">Employee email</label>
+      <label>Employee email</label>
       <input v-model='employee.email' type="text">
       <button>Add Employee</button>
     </form>
@@ -14,18 +14,20 @@
 <script>
 export default {
   name: 'employee-form',
+
   data(){
     return{
-      employee:{
-        name:'',
-        email:''
-      }
+      employee: {
+      name: '',
+      email: ''
+    }
     }
   },
-  methods:{
+
+  methods: {
     handleSubmit(){
       this.$emit('add:employee', this.employee)
-      this.employee= {name: '', email:''}
+      this.employee= {name: '', email: ''}
     }
   }
 
