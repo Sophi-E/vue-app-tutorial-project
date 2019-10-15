@@ -1,58 +1,73 @@
 <template>
-  <div id="app" class="small-container">
+  <div id='app'>
     <h1>Employees</h1>
-    <employee-form @add:employee="addEmployee" />
-    <employee-table :employees="employees" @delete:employee="deleteEmployee" />
+    <employee-form @add:employee='addEmployee' />
+    <employee-table 
+     :employees='employees' 
+     @delete:employee='deleteEmployee'
+     @edit:employee='editEmployee' />
+
   </div>
 </template>
 
 <script>
-import uuid from 'uuid';
-import EmployeeForm from "./components/EmployeeForm.vue";
-import EmployeeTable from "./components/EmployeeTable.vue";
+import EmployeeTable from './components/EmployeeTable.vue'
+import EmployeeForm from './components/EmployeeForm.vue'
+import uuid from 'uuid'
 
 export default {
-  name: "app",
-  components: {
-    EmployeeForm,
-    EmployeeTable
+  name: 'app',
+  components:{
+    EmployeeTable,
+    EmployeeForm
   },
 
-  data() {
-    return {
-      employees: [
+  data(){
+    return{
+      employees:[
         {
-          id: uuid(),
-          name: "Richard Hendricks",
-          email: "richard@piedpiper.com"
+        id: uuid(),  
+        name: 'Sophia Enax',
+        email: 'enax@gmail.com'
         },
         {
-          id: uuid(),
-          name: "Bertram Gilfoyle",
-          email: "gilfoyle@piedpiper.com"
+        id: uuid(),  
+        name: 'Goodness Amadi',
+        email: 'amadig@gmail.com'
         },
         {
-          id: uuid(),
-          name: "Dinesh Chugtai",
-          email: "dinesh@piedpiper.com"
+        id: uuid(),  
+        name: 'Chioma Beke',
+        email: 'chioma@gmail.com'
         }
       ]
-    };
+    }
   },
 
-  methods: {
-    addEmployee(employee) {
+  methods:{
+    addEmployee(employee){
       const id = uuid()
-      const NewEmployee = { ...employee, id };
-      this.employees = [...this.employees, NewEmployee]; 
+      const newEmployee = {...employee, id}
+      this.employees =[...this.employees, newEmployee]
     },
-    deleteEmployee(id) {
-      this.employees = this.employees.filter(employee => {
-        employee.id !== id;
-      });
+
+    deleteEmployee(id){
+      this.employees = this.employees.filter(employee => employee.id !== id)
+    },
+
+    editEmployee(id, updatedEmployee){
+      this.employees = this.employees.map(employee.id === id ? updatedEmployee : employee)
     }
   }
-};
+
+}
 </script>
 
-<style></style>
+<style>
+body{
+  padding: 20px;
+  width: 70%;
+  margin: auto;
+}
+
+</style>
